@@ -10,6 +10,7 @@ PACKAGES=(
     nwg-look
     nautilus
     gnome-keyring
+    fuzzel
 )
 
 paru -S --needed --noconfirm "${PACKAGES[@]}"

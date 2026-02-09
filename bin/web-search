@@ -1,0 +1,52 @@
+#!/usr/bin/env bun
+
+// Based on https://github.com/antholeole/nixconfig/blob/main/programs/zx/fuzzel-omnibar.mts
+import { $ } from "bun";
+
+const priorityBrowsers = ["zen-twilight", "helium"];
+
+const findBrowser = async () => {
+    const windows = (await $`niri msg --json windows`).json();
+    
+    for (const window of windows) {
+        if (priorityBrowsers.includes(window.app_id)) return window.id;
+    }
+
+    return undefined;
+};
+
+const onSearch = async () => {
+    const fuzzelInput = (await $`fuzzel --lines 0 --prompt "search: " --dmenu`).text().trimEnd();
+
+	let url;
+    if (fuzzelInput.startsWith("!gh")) {
+		let remainingFuzzelInput = fuzzelInput.replace("!gh ", "").trim();
+		// let extensionSuffix = "";
+
+		// if (fuzzelInput.includes("e:")) {
+		// 	const extensionQuery = remainingFuzzelInput
+		// 		.split(" ")
+		// 		.find((word) => word.startsWith("e:")) ?? '';
+
+		// 	remainingFuzzelInput = remainingFuzzelInput.replace(extensionQuery, "");
+		// 	extensionSuffix = `+path%3A*.${extensionQuery.substring(2)}`;
+		// }
+
+		url = `https://github.com/search?q=${encodeURIComponent(`"${remainingFuzzelInput}"`)}&type=code`;
+		// url = `https://github.com/search?q=%22${encodeURIComponent(remainingFuzzelInput)}%22${encodeURIComponent(extensionSuffix)}&type=code`;
+	} else {
+		url = `https://www.google.com/search?q=${encodeURIComponent(fuzzelInput)}`;
+	}
+
+	const browserId = await findBrowser();
+
+	await Promise.all([
+		$`niri msg action focus-window --id=${browserId}`,
+		$`xdg-open "${url}"`
+	]);
+};
+
+onSearch().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
