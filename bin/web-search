@@ -19,21 +19,12 @@ const onSearch = async () => {
     const fuzzelInput = (await $`fuzzel --lines 0 --prompt "search: " --dmenu`).text().trimEnd();
 
 	let url;
-    if (fuzzelInput.startsWith("!gh")) {
+	if (fuzzelInput.startsWith("!arch")) {
+		const searchTerm = fuzzelInput.replace("!arch", "").trim();
+		url = `https://wiki.archlinux.org/index.php?&search=${encodeURIComponent(searchTerm)}`
+	} else if (fuzzelInput.startsWith("!gh")) {
 		let remainingFuzzelInput = fuzzelInput.replace("!gh ", "").trim();
-		// let extensionSuffix = "";
-
-		// if (fuzzelInput.includes("e:")) {
-		// 	const extensionQuery = remainingFuzzelInput
-		// 		.split(" ")
-		// 		.find((word) => word.startsWith("e:")) ?? '';
-
-		// 	remainingFuzzelInput = remainingFuzzelInput.replace(extensionQuery, "");
-		// 	extensionSuffix = `+path%3A*.${extensionQuery.substring(2)}`;
-		// }
-
 		url = `https://github.com/search?q=${encodeURIComponent(`"${remainingFuzzelInput}"`)}&type=code`;
-		// url = `https://github.com/search?q=%22${encodeURIComponent(remainingFuzzelInput)}%22${encodeURIComponent(extensionSuffix)}&type=code`;
 	} else {
 		url = `https://www.google.com/search?q=${encodeURIComponent(fuzzelInput)}`;
 	}
