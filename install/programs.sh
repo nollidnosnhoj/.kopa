@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 CLI_PACKAGES=(
+    eza
     fd
     ffmpeg
     fish
@@ -10,6 +11,7 @@ CLI_PACKAGES=(
     unzip
     wl-clipboard
     yazi
+    zoxide
 )
 
 paru -S --needed --noconfirm "${CLI_PACKAGES[@]}"

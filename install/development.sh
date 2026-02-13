@@ -3,6 +3,7 @@
 PACKAGES=(
     bun
     code
+    fnm
     gcc
     git
     github-cli
@@ -11,7 +12,6 @@ PACKAGES=(
     luarocks
     make
     neovim-git
-    nodejs
     opencode-bin
     tree-sitter-cli
     zed
