@@ -8,6 +8,7 @@ PACKAGES=(
     niri
     noctalia-shell
     nwg-look
+    quickshell-git
     wlsunset
     xdg-desktop-portal
     xdg-desktop-portal-gnome
