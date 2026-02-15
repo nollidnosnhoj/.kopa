@@ -6,9 +6,11 @@ CLI_PACKAGES=(
     fzf
     imagemagick
     ripgrep
+    starship
     unzip
     wl-clipboard
     yazi
+    zellij
     zoxide
 )
 
