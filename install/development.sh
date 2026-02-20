@@ -19,7 +19,9 @@ PACKAGES=(
     zed
 )
 
-paru -S --needed --noconfirm "${PACKAGES[@]}"
+paru -S --needed "${PACKAGES[@]}"
+
+mise install
 
 # Installing language servers
 go install golang.org/x/tools/gopls@latest

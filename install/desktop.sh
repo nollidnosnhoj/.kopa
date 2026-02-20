@@ -13,6 +13,7 @@ PACKAGES=(
     nwg-look
     qt5ct
     quickshell-git
+    power-profiles-daemon
     wl-clipboard
     wlsunset
     xdg-desktop-portal
@@ -25,3 +26,6 @@ PACKAGES=(
 paru -S --needed --noconfirm "${PACKAGES[@]}"
 
 gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3'
+
+mkdir -p ~/Pictures/Wallpapers
+cp -r ./wallpapers/* ~/Pictures/Wallpapers/

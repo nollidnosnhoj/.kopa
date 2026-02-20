@@ -90,10 +90,10 @@ run_stow_for_packages() {
 
             if [ "$mode" = "link" ]; then
                 prepare_targets_for_package "$package"
-                stow --target "$TARGET_DIR" --restow "$package"
+                stow --target "$TARGET_DIR" --no-folding --restow "$package"
                 echo "Linked package: $package"
             else
-                stow --target "$TARGET_DIR" --delete "$package"
+                stow --target "$TARGET_DIR" --no-folding --delete "$package"
                 echo "Unlinked package: $package"
             fi
         done
