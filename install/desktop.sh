@@ -1,18 +1,24 @@
 PACKAGES=(
     adw-gtk-theme
+    brightnessctl
+    capitaine-cursors
     cava
     cliphist
     ddcutil
     fuzzel
+    kvantum
     nautilus
     niri
     noctalia-shell
     nwg-look
+    qt5ct
     quickshell-git
+    wl-clipboard
     wlsunset
     xdg-desktop-portal
     xdg-desktop-portal-gnome
     xdg-desktop-portal-gtk
+    xorg-xwayland
     xwayland-satellite
 )
 
