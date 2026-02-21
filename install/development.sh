@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 PACKAGES=(
     code
     docker
@@ -23,9 +25,11 @@ paru -S --needed "${PACKAGES[@]}"
 
 mise install
 
+
+
 # Installing language servers
-go install golang.org/x/tools/gopls@latest
-bun add -g typescript typescript-language-server
+mise exec -- go install golang.org/x/tools/gopls@latest
+mise exec -- bun add -g typescript typescript-language-server
 
 # enabling docker service
 sudo systemctl enable --now docker.service
