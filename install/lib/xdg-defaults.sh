@@ -24,7 +24,7 @@ set_mime_defaults() {
 }
 
 configure_default_apps() {
-    local imv_desktop
+    local qimgv_desktop
     local mpv_desktop
     local evince_desktop
     local zen_desktop
@@ -33,12 +33,12 @@ configure_default_apps() {
         return
     fi
 
-    imv_desktop="$(find_desktop_file imv.desktop)"
+    qimgv_desktop="$(find_desktop_file qimgv.desktop)"
     mpv_desktop="$(find_desktop_file io.mpv.Mpv.desktop mpv.desktop)"
     evince_desktop="$(find_desktop_file org.gnome.Evince.desktop evince.desktop)"
     zen_desktop="$(find_desktop_file zen-browser.desktop zen.desktop zen-browser-bin.desktop)"
 
-    set_mime_defaults "$imv_desktop" \
+    set_mime_defaults "$qimgv_desktop" \
         image/png \
         image/jpeg \
         image/gif \
