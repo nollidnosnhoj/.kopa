@@ -1,9 +1,15 @@
-    window-rule {
-        geometry-corner-radius 20 // Set every window radius to 20
-        clip-to-geometry true
-    }
+window-rule {
+    geometry-corner-radius 20 // Set every window radius to 20
+    clip-to-geometry true
+}
 
-    layer-rule {
-        match namespace="^noctalia-wallpaper*"
-        place-within-backdrop true
-    }
+layer-rule {
+    match namespace="^noctalia-wallpaper*"
+    place-within-backdrop true
+}
+
+// Floating Windows
+window-rule {
+    match app-id="^qt-sudo$"
+    open-floating true
+}
