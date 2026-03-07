@@ -16,9 +16,7 @@ CLI_PACKAGES=(
 
 paru -S --needed --noconfirm "${CLI_PACKAGES[@]}"
 
-if [ "$SHELL" != "/usr/bin/fish" ]; then
-    echo "fish is not the current shell. Change it using 'chsh -s /bin/fish'"
-fi
+chsh -s $(which fish)
 
 GUI_PACKAGES=(
     bitwarden

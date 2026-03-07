@@ -25,8 +25,6 @@ paru -S --needed "${PACKAGES[@]}"
 
 mise install
 
-
-
 # Installing language servers
 mise exec -- go install golang.org/x/tools/gopls@latest
 mise exec -- bun add -g typescript typescript-language-server

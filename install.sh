@@ -1,21 +1,14 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -e
 
-OS_NAME="$(uname -s)"
+# Make all installation scripts executable
+chmod +x ./install/*.sh
 
-if [ "$OS_NAME" = "Darwin" ]; then
-    bash "./install_mac.sh" "$@"
-    exit 0
-fi
+# Execute each installation scripts
+for f in ./install/*.sh; do
+    source "$f"
+done
 
-if [ "$OS_NAME" = "Linux" ] && [ -f /etc/os-release ]; then
-    . /etc/os-release
-    if [ "${ID:-}" = "arch" ] || [[ "${ID_LIKE:-}" == *"arch"* ]]; then
-        bash "./install_arch.sh" "$@"
-        exit 0
-    fi
-fi
-
-echo "Unsupported operating system. This installer currently supports Arch Linux and macOS only." >&2
-exit 1
+# get git submodules, including the nvim configuration
+git submodule update --init --recursive
